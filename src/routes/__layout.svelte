@@ -6,29 +6,30 @@
   import extractUserInfo from "$lib/extractUserInfo";
   import { userLogged, isLoggedIn } from "../stores/session"
 
-/** @type {import('@supabase/supabase-js').User | null}*/
+  /** @type {import('@supabase/supabase-js').User | null}*/
   const authUser = supabase.auth.user()
-  
+
   $userLogged = extractUserInfo(authUser)
-    
   if($userLogged != null) $isLoggedIn = true
 
   supabase.auth.onAuthStateChange((event, session)=>{
     if(event === 'SIGNED_IN' && session != null){
       $userLogged = extractUserInfo(session?.user)
       $isLoggedIn = true
+      goto('/home')
     }
     
     if(event === 'SIGNED_OUT'){
       $userLogged = null
       $isLoggedIn = false
-    }
-
-    if(browser){
-      if($isLoggedIn) { goto('/home') }
-      else { goto('/') }
+      goto('/')
     }
   })
+  
+  if(browser){
+    if($isLoggedIn) { goto('/home') }
+    else { goto('/') }
+  }
 </script>
 
 <slot />
