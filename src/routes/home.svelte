@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation"
 
   import { signOut } from "$lib/OAuth";
-  import { authUser } from "../stores/session"
+  import { userLogged } from "../stores/session"
   
   import Button from "../components/button.svelte"
 
@@ -15,12 +15,14 @@
 </script>
 
 
-{#if $authUser}
+{#if $userLogged}
   <div class="flex flex-col gap-3 max-w-md mx-auto pt-4">
-    <h1 class="text-white text-lg">
-      {$authUser?.identities[0].identity_data.name}
-    </h1>
-
+    <div class="flex flex-row gap-3 items-center">
+      <img class="rounded-full w-8" src={$userLogged?.avatar} alt="">
+      <span class="text-white text-lg">
+        {$userLogged?.name}
+      </span>
+    </div>
     <Button click={handleSignOut}>Cerrar sesión</Button>
   </div>
 {/if}
