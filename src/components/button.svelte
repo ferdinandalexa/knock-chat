@@ -3,6 +3,9 @@
 	export let click = () => console.log('Hello, Peter!');
 </script>
 
-<button class="text-white bg-blue-600 px-6 py-2 rounded-full" on:click={click}>
+<button
+	class="text-white bg-blue-600 px-6 py-2 rounded-full hover:bg-blue-700 active:bg-blue-800 transition-colors"
+	on:click={click}
+>
 	<slot>Button</slot>
 </button>
