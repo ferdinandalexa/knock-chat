@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
 /** @type {import('svelte/store').Writable<import('../types/User').User | null>} */
 export const userLogged = writable(null);
