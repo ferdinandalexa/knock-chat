@@ -14,3 +14,5 @@
 ## HACKATHON JULIO 2022 - TWILIO + CHAT SECRETO
 
 ## Features
+
+- [X] OAuth with Google or Github Account
