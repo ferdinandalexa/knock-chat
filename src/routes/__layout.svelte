@@ -6,16 +6,17 @@
 	import extractUserInfo from '$lib/extractUserInfo';
 	import { userLogged, isLoggedIn } from '../stores/session';
 
-	/** @type {import('@supabase/supabase-js').User | null}*/
-	const authUser = supabase.auth.user();
+	/** @type {import('@supabase/supabase-js').Session | null}*/
+	const session = supabase.auth.session();
 
-	$userLogged = extractUserInfo(authUser);
-	console.log(authUser);
-	if ($userLogged != null) $isLoggedIn = true;
+	if (session != null) {
+		$userLogged = extractUserInfo(session.user, session.access_token);
+		if ($userLogged != null) $isLoggedIn = true;
+	}
 
 	supabase.auth.onAuthStateChange((event, session) => {
 		if (event === 'SIGNED_IN' && session != null) {
-			$userLogged = extractUserInfo(session?.user);
+			$userLogged = extractUserInfo(session?.user, session.access_token);
 			$isLoggedIn = true;
 			goto('/home');
 		}

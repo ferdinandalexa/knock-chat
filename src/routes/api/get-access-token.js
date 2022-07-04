@@ -6,8 +6,6 @@ const TWILIO_API_KEY = import.meta.env.VITE_PUBLIC_TWILIO_API_KEY;
 const TWILIO_API_KEY_SECRET = import.meta.env.VITE_PUBLIC_TWILIO_API_KEY_SECRET;
 const TWILIO_SERVICE_SID = import.meta.env.VITE_PUBLIC_TWILIO_SERVICE_SID;
 
-console.log(TWILIO_ACCOUNT_SID, TWILIO_API_KEY, TWILIO_API_KEY_SECRET, TWILIO_SERVICE_SID);
-
 /** @type {import('@sveltejs/kit').RequestHandler}*/
 export const get = async ({ request }) => {
 	const jwt = request.headers.get('jwt');
@@ -15,7 +13,6 @@ export const get = async ({ request }) => {
 
 	const user = await supabase.auth.api.getUser(jwt);
 	const identity = user.data?.user_metadata.user_name;
-	console.log(identity);
 
 	if (identity == null) return { status: 401 };
 

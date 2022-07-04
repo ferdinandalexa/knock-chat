@@ -3,15 +3,23 @@
 
 	import { signOut } from '$lib/OAuth';
 	import { userLogged } from '../stores/session';
+	import { getAccessToken } from '../services/user';
 
 	import Button from '../components/button.svelte';
 
 	import '../app.css';
+	import { onMount } from 'svelte';
 
 	function handleSignOut() {
 		signOut();
 		goto('/');
 	}
+
+	onMount(async () => {
+		if ($userLogged != null) {
+			$userLogged.chat_token = await getAccessToken($userLogged);
+		}
+	});
 </script>
 
 {#if $userLogged}
