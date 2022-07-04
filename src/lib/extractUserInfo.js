@@ -4,7 +4,7 @@ export default function extractUserInfo(userData) {
 		return null;
 	}
 
-	const { provider, identity_data } = userData.identities[0];
+	const { provider, identity_data, user_id } = userData.identities[0];
 
 	/** @type {import('../types/User').User | null} */
 	let user = null;
@@ -12,14 +12,16 @@ export default function extractUserInfo(userData) {
 	if (provider === 'google') {
 		user = {
 			name: identity_data?.name,
-			avatar: identity_data?.avatar_url
+			avatar: identity_data?.avatar_url,
+			token: user_id
 		};
 	}
 
 	if (provider === 'github') {
 		user = {
 			name: identity_data?.user_name,
-			avatar: identity_data?.avatar_url
+			avatar: identity_data?.avatar_url,
+			token: user_id
 		};
 	}
 

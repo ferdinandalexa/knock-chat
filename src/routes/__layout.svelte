@@ -10,6 +10,7 @@
 	const authUser = supabase.auth.user();
 
 	$userLogged = extractUserInfo(authUser);
+	console.log(authUser);
 	if ($userLogged != null) $isLoggedIn = true;
 
 	supabase.auth.onAuthStateChange((event, session) => {
