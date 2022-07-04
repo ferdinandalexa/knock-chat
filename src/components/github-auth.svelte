@@ -2,7 +2,8 @@
 	import { signIn } from '$lib/OAuth';
 
 	async function handleSignIn() {
-		await signIn('github', 'http://localhost:3000/home');
+		const host = window.location.origin;
+		await signIn('github', `${host}/home`);
 	}
 </script>
 
