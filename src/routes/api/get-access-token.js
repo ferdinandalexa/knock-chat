@@ -20,7 +20,7 @@ export const get = async ({ request }) => {
 	const { ChatGrant } = AccessToken;
 
 	const accessToken = new AccessToken(TWILIO_ACCOUNT_SID, TWILIO_API_KEY, TWILIO_API_KEY_SECRET, {
-		identity: ''
+		identity: identity
 	});
 
 	const conversationGrant = new ChatGrant({

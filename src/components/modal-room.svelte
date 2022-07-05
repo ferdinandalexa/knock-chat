@@ -1,17 +1,28 @@
 <script>
+	import { userLogged } from '../stores/session';
+	import { createOrJoinConversation } from '../services/chat';
 	import { isOpenModal } from '../stores/modal';
 	import Button from './button.svelte';
+	import { goto } from '$app/navigation';
+
+	/**@type {string}*/
+	let roomName = '';
 </script>
 
 {#if $isOpenModal}
 	<div class="fixed grid h-full place-items-center w-full z-10 backdrop-brightness-50 p-4">
 		<div class="bg-neutral-700 p-6 rounded-md w-full max-w-md">
-			<form>
+			<form
+				on:submit|preventDefault={() => {
+					console.log('Submit hecho');
+				}}
+			>
 				<div class="flex flex-col gap-2">
 					<label for="chat-name" class="text-base font-regular text-neutral-300">
 						Nombre del grupo
 					</label>
 					<input
+						bind:value={roomName}
 						type="text"
 						name="chat-name"
 						id="chat-name"
@@ -20,7 +31,18 @@
 						required
 					/>
 					<div class="flex flex-row gap-2 w-full items-center justify-center">
-						<Button css="flex-1">Crear grupo</Button>
+						<Button
+							click={() => {
+								if ($userLogged != null) {
+									createOrJoinConversation({
+										room: roomName,
+										accessToken: $userLogged?.chat_token
+									});
+								}
+								$isOpenModal = false;
+							}}
+							css="flex-1">Crear grupo</Button
+						>
 						<Button
 							click={() => {
 								isOpenModal.set(false);
