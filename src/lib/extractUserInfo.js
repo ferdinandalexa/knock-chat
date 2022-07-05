@@ -17,7 +17,7 @@ export default function extractUserInfo(userData, accessToken) {
 			name: identity_data?.name,
 			avatar: identity_data?.avatar_url,
 			token: accessToken,
-			chat_token: ''
+			chatToken: ''
 		};
 	}
 
@@ -26,7 +26,7 @@ export default function extractUserInfo(userData, accessToken) {
 			name: identity_data?.user_name,
 			avatar: identity_data?.avatar_url,
 			token: accessToken,
-			chat_token: ''
+			chatToken: ''
 		};
 	}
 

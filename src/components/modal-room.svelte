@@ -3,7 +3,6 @@
 	import { createOrJoinConversation } from '../services/chat';
 	import { isOpenModal } from '../stores/modal';
 	import Button from './button.svelte';
-	import { goto } from '$app/navigation';
 
 	/**@type {string}*/
 	let roomName = '';

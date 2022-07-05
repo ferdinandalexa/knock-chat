@@ -2,5 +2,5 @@ export type User = {
   name: string,
   avatar: string,
   token: string,
-  chat_token: string,
+  chatToken: string,
 }

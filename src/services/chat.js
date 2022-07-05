@@ -24,3 +24,10 @@ export const createOrJoinConversation = async ({ room, accessToken }) => {
 		});
 	});
 };
+
+/** @param {string} accessToken*/
+export const getChatList = async (accessToken) => {
+	const client = new Client(accessToken);
+	const chatList = await client.getSubscribedConversations();
+	return chatList.items;
+};

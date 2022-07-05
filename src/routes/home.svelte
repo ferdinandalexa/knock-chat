@@ -5,7 +5,9 @@
 	import { userLogged } from '../stores/session';
 	import { isOpenModal } from '../stores/modal';
 	import { getAccessToken } from '../services/user';
+	import { getChatList } from '../services/chat';
 
+	import RoomList from '../components/RoomList.svelte';
 	import ButtonIcon from '../components/button-icon.svelte';
 	import IconLogout from '../components/icons/icon-logout.svelte';
 	import IconPlus from '../components/icons/icon-plus.svelte';
@@ -14,6 +16,9 @@
 	import '../app.css';
 	import { onMount } from 'svelte';
 
+	/**@type {any}*/
+	let chatList = [];
+
 	function handleSignOut() {
 		signOut();
 		goto('/');
@@ -21,7 +26,8 @@
 
 	onMount(async () => {
 		if ($userLogged != null) {
-			$userLogged.chat_token = await getAccessToken($userLogged);
+			$userLogged.chatToken = await getAccessToken($userLogged);
+			chatList = getChatList($userLogged.chatToken);
 		}
 	});
 </script>
@@ -40,6 +46,11 @@
 				<IconLogout width={20} height={20} />
 			</ButtonIcon>
 		</header>
+		<div>
+			{#await chatList then chatList}
+				<RoomList {chatList} />
+			{/await}
+		</div>
 		<ButtonIcon
 			click={() => {
 				$isOpenModal = true;
