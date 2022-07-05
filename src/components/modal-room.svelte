@@ -35,7 +35,7 @@
 								if ($userLogged != null) {
 									createOrJoinConversation({
 										room: roomName,
-										accessToken: $userLogged?.chat_token
+										accessToken: $userLogged?.chatToken
 									});
 								}
 								$isOpenModal = false;
