@@ -16,3 +16,4 @@
 ## Features
 
 - [X] OAuth with Google or Github Account
+- [X] List all user's chats 
