@@ -1,11 +1,9 @@
 <script>
 	import { goto } from '$app/navigation';
-
 	import { signOut } from '$lib/OAuth';
 	import { userLogged } from '../stores/session';
 	import { isOpenModal } from '../stores/modal';
 	import { getAccessToken } from '../services/user';
-	import { getChatList } from '../services/chat';
 
 	import RoomList from '../components/RoomList.svelte';
 	import ButtonIcon from '../components/button-icon.svelte';
@@ -14,22 +12,22 @@
 	import ModalRoom from '../components/modal-room.svelte';
 
 	import '../app.css';
-	import { onMount } from 'svelte';
+	/**@type {Promise<string | undefined>}*/
+	let response;
 
-	/**@type {any}*/
-	let chatList = [];
+	if ($userLogged != null) {
+		response = getAccessToken({ token: $userLogged.token }).then((token) => {
+			if ($userLogged?.chatToken != null) {
+				$userLogged.chatToken = token;
+				return new Promise((resolve) => resolve('Get access token succesfully'));
+			}
+		});
+	}
 
 	function handleSignOut() {
 		signOut();
 		goto('/');
 	}
-
-	onMount(async () => {
-		if ($userLogged != null) {
-			$userLogged.chatToken = await getAccessToken($userLogged);
-			chatList = getChatList($userLogged.chatToken);
-		}
-	});
 </script>
 
 {#if $userLogged}
@@ -46,18 +44,21 @@
 				<IconLogout width={20} height={20} />
 			</ButtonIcon>
 		</header>
-		<div>
-			{#await chatList then chatList}
-				<RoomList {chatList} />
-			{/await}
-		</div>
-		<ButtonIcon
-			click={() => {
-				$isOpenModal = true;
-			}}
-			css="absolute bottom-6 right-6"
-		>
-			<IconPlus />
-		</ButtonIcon>
+
+		{#await response}
+			<p class="text-white">Conectando...</p>
+		{:then response}
+			<div>
+				<RoomList />
+			</div>
+			<ButtonIcon
+				click={() => {
+					$isOpenModal = true;
+				}}
+				css="absolute bottom-6 right-6"
+			>
+				<IconPlus />
+			</ButtonIcon>
+		{/await}
 	</div>
 {/if}
