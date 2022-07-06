@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 
-	import { activeConversation } from '../stores/chat';
+	import { activeConversation } from '$stores/chat';
 
 	/** @type {string | null}*/
 	export let uniqueName = '';

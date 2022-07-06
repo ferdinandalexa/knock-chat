@@ -2,10 +2,10 @@
 	import { supabase } from '$lib/supabase';
 	import extractUserInfo from '$lib/extractUserInfo';
 
-	import { userLogged, isLoggedIn } from '../stores/session';
+	import { userLogged, isLoggedIn } from '$stores/session';
 
-	import Feed from '../containers/feed.svelte';
-	import Login from '../containers/login.svelte';
+	import Feed from '$containers/feed.svelte';
+	import Login from '$containers/login.svelte';
 
 	import '../app.css';
 

@@ -1,15 +1,15 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { signOut } from '$lib/OAuth';
-	import { userLogged } from '../stores/session';
-	import { isOpenModal } from '../stores/modal';
-	import { getAccessToken } from '../services/user';
+	import { userLogged } from '$stores/session';
+	import { isOpenModal } from '$stores/modal';
+	import { getAccessToken } from '$services/user';
 
-	import RoomList from '../components/RoomList.svelte';
-	import ButtonIcon from '../components/button-icon.svelte';
-	import IconLogout from '../components/icons/icon-logout.svelte';
-	import IconPlus from '../components/icons/icon-plus.svelte';
-	import ModalRoom from '../components/modal-room.svelte';
+	import RoomList from '$components/RoomList.svelte';
+	import ButtonIcon from '$components/button-icon.svelte';
+	import IconLogout from '$components/icons/icon-logout.svelte';
+	import IconPlus from '$components/icons/icon-plus.svelte';
+	import ModalRoom from '$components/modal-room.svelte';
 
 	import '../app.css';
 	/**@type {Promise<string | undefined>}*/

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { userLogged } from '../stores/session';
+	import { userLogged } from '$stores/session';
 
 	/**@typedef {{ body: string; author: string; dateCreated: string}} Message*/
 	/** @type {[Array<Message>}*/

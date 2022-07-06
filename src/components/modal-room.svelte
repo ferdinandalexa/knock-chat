@@ -1,9 +1,10 @@
 <script>
-	import { userLogged } from '../stores/session';
-	import { createOrJoinConversation } from '../services/chat';
-	import { chatList } from '../stores/chat';
-	import { isOpenModal } from '../stores/modal';
-	import Button from './button.svelte';
+	import { createOrJoinConversation } from '$services/chat';
+	import { userLogged } from '$stores/session';
+	import { chatList } from '$stores/chat';
+	import { isOpenModal } from '$stores/modal';
+
+	import Button from '$components/button.svelte';
 
 	/**@type {string}*/
 	let roomName = '';

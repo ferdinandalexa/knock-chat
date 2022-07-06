@@ -1,11 +1,9 @@
 <script>
-	import extractChatInfo from '$lib/extractChatInfo';
+	import { getChatList } from '$services/chat';
+	import { userLogged } from '$stores/session';
+	import { chatList } from '$stores/chat';
 
-	import { getChatList } from '../services/chat';
-	import { userLogged } from '../stores/session';
-	import { chatList } from '../stores/chat';
-
-	import RoomCard from './RoomCard.svelte';
+	import RoomCard from '$components/RoomCard.svelte';
 
 	/**@typedef {import('../types/Chat').Chat} Chat*/
 	/**@type {Promise<any> | Array<Chat>}*/

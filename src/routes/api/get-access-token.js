@@ -1,5 +1,5 @@
-import { supabase } from '$lib/supabase';
 import twilio from 'twilio';
+import { supabase } from '$lib/supabase';
 
 const TWILIO_ACCOUNT_SID = import.meta.env.VITE_PUBLIC_TWILIO_ACCOUNT_SID;
 const TWILIO_API_KEY = import.meta.env.VITE_PUBLIC_TWILIO_API_KEY;

@@ -2,9 +2,9 @@
 	import autosize from 'autosize';
 	import { onMount } from 'svelte';
 
-	import { activeConversation } from '../stores/chat';
+	import { activeConversation } from '$stores/chat';
 
-	import IconSend from '../components/icons/icon-send.svelte';
+	import IconSend from '$icons/icon-send.svelte';
 
 	/**@type {string}*/
 	let message;

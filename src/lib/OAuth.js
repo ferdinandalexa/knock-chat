@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase } from '$lib/supabase';
 
 /** @typedef {import('@supabase/supabase-js').Provider} Provider*/
 

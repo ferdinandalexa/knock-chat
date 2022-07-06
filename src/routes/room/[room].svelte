@@ -2,20 +2,20 @@
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/env';
 
-	import { activeConversation } from '../../stores/chat';
-	import { userLogged } from '../../stores/session';
-	import { deleteChat } from '../../services/chat';
+	import { activeConversation } from '$stores/chat';
+	import { userLogged } from '$stores/session';
+	import { deleteChat } from '$services/chat';
 
-	import ButtonIcon from '../../components/button-icon.svelte';
-	import Dropdown from '../../components/drowpdown.svelte';
-	import DropdownItem from '../../components/dropdown-item.svelte';
-	import Conversation from '../../components/conversation.svelte';
-	import ConversationInput from '../../components/conversation-input.svelte';
+	import ButtonIcon from '$components/button-icon.svelte';
+	import Dropdown from '$components/drowpdown.svelte';
+	import DropdownItem from '$components/dropdown-item.svelte';
+	import Conversation from '$components/conversation.svelte';
+	import ConversationInput from '$components/conversation-input.svelte';
 
-	import IconChevRonLeft from '../../components/icons/icon-chevron-left.svelte';
-	import IconLogout from '../../components/icons/icon-logout.svelte';
-	import IconInfo from '../../components/icons/icon-info.svelte';
-	import IconDelete from '../../components/icons/icon-delete.svelte';
+	import IconChevRonLeft from '$components/icons/icon-chevron-left.svelte';
+	import IconLogout from '$components/icons/icon-logout.svelte';
+	import IconInfo from '$components/icons/icon-info.svelte';
+	import IconDelete from '$components/icons/icon-delete.svelte';
 
 	function handleClick() {
 		goto('/');

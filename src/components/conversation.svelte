@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, afterUpdate } from 'svelte';
-	import { activeConversation } from '../stores/chat';
+	import { activeConversation } from '$stores/chat';
 
 	import Message from './message.svelte';
 

@@ -1,7 +1,7 @@
 <script>
 	import { createPopper } from '@popperjs/core';
 
-	import IconMore from './icons/icon-more.svelte';
+	import IconMore from '$icons/icon-more.svelte';
 
 	let dropdownPopoverShow = false;
 
