@@ -13,7 +13,7 @@
 	}
 </script>
 
-<form on:submit|preventDefault={handleSubmit} class="p-4 relative w-full">
+<form on:submit|preventDefault={handleSubmit} class="p-4 w-full absolute bottom-0">
 	<div class="flex flex-row gap-2">
 		<input
 			bind:value={message}
