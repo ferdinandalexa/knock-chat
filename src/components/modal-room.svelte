@@ -1,6 +1,7 @@
 <script>
 	import { userLogged } from '../stores/session';
 	import { createOrJoinConversation } from '../services/chat';
+	import { chatList } from '../stores/chat';
 	import { isOpenModal } from '../stores/modal';
 	import Button from './button.svelte';
 
@@ -36,9 +37,12 @@
 									createOrJoinConversation({
 										room: roomName,
 										accessToken: $userLogged?.chatToken
+									}).then(() => {
+										$chatList = [{ uniqueName: roomName, sid: '' }, ...$chatList];
+										console.log($chatList);
+										$isOpenModal = false;
 									});
 								}
-								$isOpenModal = false;
 							}}
 							css="flex-1">Crear grupo</Button
 						>
