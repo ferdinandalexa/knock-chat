@@ -1,4 +1,4 @@
 export type Chat = {
-  uniqueName: string | null,
+  uniqueName: string,
   sid: string,
 }
