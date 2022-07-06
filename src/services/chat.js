@@ -32,3 +32,13 @@ export const getChatList = async (accessToken) => {
 	const chatList = await client.getSubscribedConversations();
 	return chatList.items;
 };
+
+/**
+ * @param {string} accessToken
+ * @param {string} sid
+ */
+export const deleteChat = async (accessToken, sid) => {
+	const client = new Client(accessToken);
+	const conversation = await client.getConversationBySid(sid);
+	conversation.delete();
+};
