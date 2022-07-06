@@ -9,11 +9,12 @@ const TWILIO_SERVICE_SID = import.meta.env.VITE_PUBLIC_TWILIO_SERVICE_SID;
 /** @type {import('@sveltejs/kit').RequestHandler}*/
 export const get = async ({ request }) => {
 	const jwt = request.headers.get('jwt');
+
 	if (jwt == null) return { status: 401 };
 
 	const user = await supabase.auth.api.getUser(jwt);
-	const identity = user.data?.user_metadata.user_name;
 
+	const identity = user.data?.user_metadata?.user_name || user.data?.user_metadata?.full_name;
 	if (identity == null) return { status: 401 };
 
 	const { AccessToken } = twilio.jwt;

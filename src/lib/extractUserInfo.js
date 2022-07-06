@@ -7,11 +7,11 @@ export default function extractUserInfo(userData, accessToken) {
 		return null;
 	}
 
-	const { avatar_url, user_name } = userData.user_metadata;
+	const { avatar_url, user_name, full_name } = userData.user_metadata;
 
 	/** @type {import('../types/User').User | null} */
 	const user = {
-		name: user_name,
+		name: user_name || full_name,
 		avatar: avatar_url,
 		token: accessToken,
 		chatToken: ''
