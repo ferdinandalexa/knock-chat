@@ -37,9 +37,11 @@
 									createOrJoinConversation({
 										room: roomName,
 										accessToken: $userLogged?.chatToken
-									}).then(() => {
-										$chatList = [{ uniqueName: roomName, sid: '' }, ...$chatList];
-										$isOpenModal = false;
+									}).then((conversation) => {
+										if ($chatList != null) {
+											$chatList = [conversation, ...$chatList];
+											$isOpenModal = false;
+										}
 									});
 								}
 							}}

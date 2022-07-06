@@ -19,7 +19,7 @@ export const createOrJoinConversation = async ({ room, accessToken }) => {
 					}
 				}
 
-				resolve('Chat created');
+				resolve(conversation);
 				conversation?.join();
 			}
 		});
