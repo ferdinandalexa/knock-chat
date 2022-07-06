@@ -1,9 +1,3 @@
-// /**
-//  * @param {{
-//  * uniqueName: string,
-//  * participants: Array<import('@twilio/conversations').Participant>,
-//  * sid: string}} conversation
-//  * */
 /**
  * @param {import('@twilio/conversations').Conversation} conversation
  * */
