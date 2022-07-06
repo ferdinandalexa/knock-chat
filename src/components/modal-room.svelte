@@ -39,7 +39,6 @@
 										accessToken: $userLogged?.chatToken
 									}).then(() => {
 										$chatList = [{ uniqueName: roomName, sid: '' }, ...$chatList];
-										console.log($chatList);
 										$isOpenModal = false;
 									});
 								}

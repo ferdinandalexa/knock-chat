@@ -1,6 +1,5 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { browser } from '$app/env';
 
 	import { supabase } from '$lib/supabase';
 	import extractUserInfo from '$lib/extractUserInfo';
@@ -27,14 +26,6 @@
 			goto('/');
 		}
 	});
-
-	if (browser) {
-		if ($isLoggedIn) {
-			goto('/home');
-		} else {
-			goto('/');
-		}
-	}
 </script>
 
 <slot />
