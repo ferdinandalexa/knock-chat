@@ -1,24 +1,37 @@
 <script>
-	import { browser } from '$app/env';
-	import { goto } from '$app/navigation';
+	import { supabase } from '$lib/supabase';
+	import extractUserInfo from '$lib/extractUserInfo';
 
-	import { isLoggedIn } from '../stores/session';
+	import { userLogged, isLoggedIn } from '../stores/session';
 
-	import GithubAuth from '../components/github-auth.svelte';
-	import GoogleAuth from '../components/google-auth.svelte';
+	import Feed from '../containers/feed.svelte';
+	import Login from '../containers/login.svelte';
 
 	import '../app.css';
 
-	if (browser) {
-		if ($isLoggedIn) {
-			goto('/home');
-		} else {
-			goto('/');
-		}
+	/** @type {import('@supabase/supabase-js').Session | null}*/
+	const session = supabase.auth.session();
+
+	if (session != null) {
+		$userLogged = extractUserInfo(session.user, session.access_token);
+		if ($userLogged != null) $isLoggedIn = true;
 	}
+
+	supabase.auth.onAuthStateChange((event, session) => {
+		if (event === 'SIGNED_IN' && session != null) {
+			$userLogged = extractUserInfo(session?.user, session.access_token);
+			$isLoggedIn = true;
+		}
+
+		if (event === 'SIGNED_OUT') {
+			$userLogged = null;
+			$isLoggedIn = false;
+		}
+	});
 </script>
 
-<div class="flex flex-col gap-3 max-w-md mx-auto pt-4">
-	<GithubAuth />
-	<GoogleAuth />
-</div>
+{#if !$userLogged}
+	<Login />
+{:else}
+	<Feed />
+{/if}

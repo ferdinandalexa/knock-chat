@@ -30,35 +30,33 @@
 	}
 </script>
 
-{#if $userLogged}
-	<ModalRoom />
-	<div class="flex flex-col gap-3 max-w-md mx-auto p-4 h-full relative">
-		<header class="flex flex-row gap-3 items-center justify-between">
-			<div class="flex flex-row gap-3 items-center">
-				<img class="rounded-full w-8" src={$userLogged?.avatar} alt="" />
-				<span class="text-white text-lg">
-					{$userLogged?.name}
-				</span>
-			</div>
-			<ButtonIcon click={handleSignOut} transparent>
-				<IconLogout width={20} height={20} />
-			</ButtonIcon>
-		</header>
+<ModalRoom />
+<div class="flex flex-col gap-3 max-w-md mx-auto p-4 h-full relative">
+	<header class="flex flex-row gap-3 items-center justify-between">
+		<div class="flex flex-row gap-3 items-center">
+			<img class="rounded-full w-8" src={$userLogged?.avatar} alt="" />
+			<span class="text-white text-lg">
+				{$userLogged?.name}
+			</span>
+		</div>
+		<ButtonIcon click={handleSignOut} transparent>
+			<IconLogout width={20} height={20} />
+		</ButtonIcon>
+	</header>
 
-		{#await response}
-			<p class="text-white">Conectando...</p>
-		{:then response}
-			<div>
-				<RoomList />
-			</div>
-			<ButtonIcon
-				click={() => {
-					$isOpenModal = true;
-				}}
-				css="absolute bottom-6 right-6"
-			>
-				<IconPlus />
-			</ButtonIcon>
-		{/await}
-	</div>
-{/if}
+	{#await response}
+		<p class="text-white">Conectando...</p>
+	{:then response}
+		<div>
+			<RoomList />
+		</div>
+		<ButtonIcon
+			click={() => {
+				$isOpenModal = true;
+			}}
+			css="absolute bottom-6 right-6"
+		>
+			<IconPlus />
+		</ButtonIcon>
+	{/await}
+</div>

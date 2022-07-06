@@ -3,7 +3,7 @@
 
 	async function handleSignIn() {
 		const host = window.location.origin;
-		await signIn('github', `${host}/home`);
+		await signIn('github', `${host}/`);
 	}
 </script>
 

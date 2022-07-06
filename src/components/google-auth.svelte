@@ -3,7 +3,7 @@
 
 	async function handleSignIn() {
 		const host = window.location.origin;
-		await signIn('google', `${host}/home`);
+		await signIn('google', `${host}/`);
 	}
 </script>
 
