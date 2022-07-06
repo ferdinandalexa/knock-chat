@@ -5,7 +5,7 @@
 	import { isOpenModal } from '$stores/modal';
 	import { getAccessToken } from '$services/user';
 
-	import RoomList from '$components/RoomList.svelte';
+	import RoomList from '$components/room-list.svelte';
 	import ButtonIcon from '$components/button-icon.svelte';
 	import IconLogout from '$components/icons/icon-logout.svelte';
 	import IconPlus from '$components/icons/icon-plus.svelte';

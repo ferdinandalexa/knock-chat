@@ -3,7 +3,7 @@
 	import { userLogged } from '$stores/session';
 	import { chatList } from '$stores/chat';
 
-	import RoomCard from '$components/RoomCard.svelte';
+	import RoomCard from '$components/room-card.svelte';
 
 	/**@typedef {import('../types/Chat').Chat} Chat*/
 	/**@type {Promise<any> | Array<Chat>}*/
