@@ -1,5 +1,8 @@
+/** @typedef {import('@supabase/supabase-js').User | null} SupabaseUserData*/
+/**@typedef {import('../types/User').User | null} User*/
+
 /**
- * @param {import('@supabase/supabase-js').User | null} userData
+ * @param {SupabaseUserData} userData
  * @param {string} accessToken
  * */
 export default function extractUserInfo(userData, accessToken) {
@@ -9,7 +12,7 @@ export default function extractUserInfo(userData, accessToken) {
 
 	const { avatar_url, user_name, full_name } = userData.user_metadata;
 
-	/** @type {import('../types/User').User | null} */
+	/** @type {User} */
 	const user = {
 		name: user_name || full_name,
 		avatar: avatar_url,

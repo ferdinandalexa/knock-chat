@@ -1,12 +1,13 @@
-/**
- * @param {import('@twilio/conversations').Conversation} conversation
- * */
-export default function extractChatInfo(conversation) {
-	const { uniqueName, sid } = conversation;
+/** @typedef {import('@twilio/conversations').Conversation} Conversation*/
+/**@typedef {import('../types/Chat').Chat} Chat*/
 
-	/** @type {import('../types/Chat').Chat} */
+/** @param {Conversation} conversation*/
+export default function extractChatInfo(conversation) {
+	const { uniqueName, friendlyName, sid } = conversation;
+
+	/** @type {Chat} */
 	const chat = {
-		uniqueName: uniqueName,
+		uniqueName: uniqueName || friendlyName || sid,
 		sid: sid
 	};
 

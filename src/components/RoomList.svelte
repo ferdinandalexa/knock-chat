@@ -7,7 +7,8 @@
 
 	import RoomCard from './RoomCard.svelte';
 
-	/**@type {Promise<any> | Array<import('../types/Chat').Chat>}*/
+	/**@typedef {import('../types/Chat').Chat} Chat*/
+	/**@type {Promise<any> | Array<Chat>}*/
 	let response = [];
 
 	/** @type {string}*/

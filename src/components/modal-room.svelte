@@ -7,6 +7,20 @@
 
 	/**@type {string}*/
 	let roomName = '';
+
+	function handleCreateNewRoom() {
+		if ($userLogged != null) {
+			createOrJoinConversation({
+				room: roomName,
+				accessToken: $userLogged?.chatToken
+			}).then((conversation) => {
+				if ($chatList != null) {
+					$chatList = [conversation, ...$chatList];
+					$isOpenModal = false;
+				}
+			});
+		}
+	}
 </script>
 
 {#if $isOpenModal}
@@ -31,29 +45,16 @@
 						required
 					/>
 					<div class="flex flex-row gap-2 w-full items-center justify-center">
-						<Button
-							click={() => {
-								if ($userLogged != null) {
-									createOrJoinConversation({
-										room: roomName,
-										accessToken: $userLogged?.chatToken
-									}).then((conversation) => {
-										if ($chatList != null) {
-											$chatList = [conversation, ...$chatList];
-											$isOpenModal = false;
-										}
-									});
-								}
-							}}
-							css="flex-1">Crear grupo</Button
-						>
+						<Button click={handleCreateNewRoom} css="flex-1">Crear grupo</Button>
 						<Button
 							click={() => {
 								isOpenModal.set(false);
 							}}
 							css="flex-1"
-							secondary>Regresar</Button
+							secondary
 						>
+							Regresar
+						</Button>
 					</div>
 				</div>
 			</form>

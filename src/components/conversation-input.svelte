@@ -13,9 +13,10 @@
 	let textarea;
 
 	function handleSubmit() {
-		$activeConversation.sendMessage(message);
-		console.log(`Mensaje "${message}" enviado`);
-		message = '';
+		if ($activeConversation != null) {
+			$activeConversation.sendMessage(message);
+			message = '';
+		}
 	}
 
 	onMount(() => {

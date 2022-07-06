@@ -6,19 +6,21 @@
 
 	let div: HTMLDivElement;
 
-	/** @type {Array<{ body: string; author: string; dateCreated: string}>}*/
-	let messages = [];
+	/**@typedef {{ body: string; author: string; dateCreated: string}} Message*/
+	/** @type {[Array<Message>}*/
+	let messages = new Array();
 
 	onMount(async () => {
 		/**@type {import('@twilio/conversations').Paginator}*/
-		const paginator = await $activeConversation.getMessages();
-		console.log(paginator.items);
-		messages = paginator.items;
+		if ($activeConversation != null) {
+			const paginator = await $activeConversation.getMessages();
+			messages = paginator.items;
 
-		/** @param {Array<{ body: string; author: string; dateCreated: string}>} message*/
-		$activeConversation.on('messageAdded', (message) => {
-			messages = [...messages, message];
-		});
+			/** @param {Array<Message>} message*/
+			$activeConversation.on('messageAdded', (message) => {
+				messages = [...messages, message];
+			});
+		}
 	});
 	afterUpdate(() => {
 		window.scrollTo(0, div.scrollHeight);

@@ -6,7 +6,8 @@ const TWILIO_API_KEY = import.meta.env.VITE_PUBLIC_TWILIO_API_KEY;
 const TWILIO_API_KEY_SECRET = import.meta.env.VITE_PUBLIC_TWILIO_API_KEY_SECRET;
 const TWILIO_SERVICE_SID = import.meta.env.VITE_PUBLIC_TWILIO_SERVICE_SID;
 
-/** @type {import('@sveltejs/kit').RequestHandler}*/
+/**@typedef {import('@sveltejs/kit').RequestHandler} RequestHandler*/
+/** @type {RequestHandler}*/
 export const get = async ({ request }) => {
 	const jwt = request.headers.get('jwt');
 

@@ -1,7 +1,13 @@
 import { writable } from 'svelte/store';
 
-/** @type {import('svelte/store').Writable<Array<import('@twilio/conversations').Conversation> | null>} */
+/**
+ * @typedef {import('@twilio/conversations').Conversation} Conversation
+ * @typedef {import('svelte/store').Writable<Conversation | null>} StoreConversation
+ * @typedef {import('svelte/store').Writable<Array<Conversation> | null>} StoreConversationArray
+ */
+
+/** @type {StoreConversationArray} */
 export const chatList = writable(null);
 
-/** @type {import('svelte/store').Writable<import('@twilio/conversations').Conversation | null>} */
+/** @type {StoreConversation} */
 export const activeConversation = writable(null);

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { userLogged } from '../stores/session';
 
-	/** @type {Array<{ body: string; author: string; dateCreated: string}>}*/
+	/**@typedef {{ body: string; author: string; dateCreated: string}} Message*/
+	/** @type {[Array<Message>}*/
 	export let message;
 	const { body, author, dateCreated } = message;
 

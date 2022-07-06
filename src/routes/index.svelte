@@ -9,7 +9,8 @@
 
 	import '../app.css';
 
-	/** @type {import('@supabase/supabase-js').Session | null}*/
+	/** @typedef {import('@supabase/supabase-js').Session | null} Session*/
+	/** @type {Session}*/
 	const session = supabase.auth.session();
 
 	if (session != null) {

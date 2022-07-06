@@ -1,6 +1,7 @@
 import { Client } from '@twilio/conversations';
 
-/** @param {{ room: string, accessToken: string}} conversation*/
+/** @typedef {{ room: string, accessToken: string}} ConversationAccess*/
+/** @param {ConversationAccess} conversation*/
 export const createOrJoinConversation = async ({ room, accessToken }) => {
 	const client = new Client(accessToken);
 	return new Promise((resolve, reject) => {

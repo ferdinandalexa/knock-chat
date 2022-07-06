@@ -1,7 +1,9 @@
 import { supabase } from './supabase';
 
+/** @typedef {import('@supabase/supabase-js').Provider} Provider*/
+
 /** 
-  @param {import("@supabase/supabase-js").Provider} provider
+  @param {Provider} provider
   @param {string} redirectTo
 */
 export const signIn = async (provider, redirectTo) => {
