@@ -1,8 +1,8 @@
 {
-	"name": "kneck-chat",
+	"name": "my-app",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite-kit dev",
+		"dev": "vite dev",
 		"build": "vite build",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
@@ -33,7 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@popperjs/core": "2.4.4",
+		"@popperjs/core": "2.11.5",
 		"@supabase/supabase-js": "1.35.4",
 		"@twilio/conversations": "2.1.0",
 		"autosize": "5.0.1",
