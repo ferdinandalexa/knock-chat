@@ -6,6 +6,7 @@
 	import { userLogged } from '$stores/session';
 	import { deleteChat } from '$services/chat';
 
+	import InfoGroup from '$containers/info-group.svelte';
 	import ButtonIcon from '$components/button-icon.svelte';
 	import Conversation from '$components/conversation.svelte';
 	import ConversationInput from '$components/conversation-input.svelte';
@@ -13,8 +14,15 @@
 
 	import IconChevRonLeft from '$icons/icon-chevron-left.svelte';
 
+	/**@type {boolean}*/
+	let showInfoGroup = false;
+
 	function handleClick() {
 		goto('/');
+	}
+
+	function handleInfoPanel() {
+		showInfoGroup = !showInfoGroup;
 	}
 
 	function handleDelete() {
@@ -37,10 +45,13 @@
 			<ButtonIcon transparent click={handleClick}><IconChevRonLeft /></ButtonIcon>
 			<h1 class="text-white text-lg font-semibold mb-[1px]">{$activeConversation.uniqueName}</h1>
 		</div>
-		<RoomActions {handleDelete} />
+		<RoomActions {handleDelete} {handleInfoPanel} />
 	</header>
 	<div class="">
 		<Conversation />
 		<ConversationInput />
 	</div>
+	{#if showInfoGroup}
+		<InfoGroup click={handleInfoPanel} />
+	{/if}
 {/if}

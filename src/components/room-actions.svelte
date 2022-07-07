@@ -2,6 +2,9 @@
 	/**@type {VoidFunction}*/
 	export let handleDelete;
 
+	/**@type {VoidFunction}*/
+	export let handleInfoPanel;
+
 	import Dropdown from '$components/drowpdown.svelte';
 	import DropdownItem from '$components/dropdown-item.svelte';
 
@@ -11,7 +14,9 @@
 </script>
 
 <Dropdown>
-	<DropdownItem><IconInfo width={16} height={16} />Información del grupo</DropdownItem>
+	<DropdownItem click={handleInfoPanel}>
+		<IconInfo width={16} height={16} />Información del grupo
+	</DropdownItem>
 	<DropdownItem><IconLogout width={16} height={16} />Abandonar grupo</DropdownItem>
 	<DropdownItem click={handleDelete}>
 		<IconDelete width={16} height={16} />Eliminar
