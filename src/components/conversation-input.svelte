@@ -24,7 +24,7 @@
 	});
 </script>
 
-<form on:submit|preventDefault={handleSubmit} class="p-4 w-full absolute bottom-0">
+<form on:submit|preventDefault={handleSubmit} class="p-4 w-full bg-neutral-800">
 	<div class="flex flex-row gap-2 items-end">
 		<textarea
 			bind:value={message}

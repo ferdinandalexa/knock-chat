@@ -40,18 +40,26 @@
 </script>
 
 {#if $activeConversation}
-	<header class="flex flex-row justify-between items-center p-2	py-4">
-		<div class="flex flex-row items-center">
-			<ButtonIcon transparent click={handleClick}><IconChevRonLeft /></ButtonIcon>
-			<h1 class="text-white text-lg font-semibold mb-[1px]">{$activeConversation.uniqueName}</h1>
-		</div>
-		<RoomActions {handleDelete} {handleInfoPanel} />
-	</header>
-	<div class="">
+	<div class="max-h-screen grid-room">
+		<header class="flex flex-row justify-between items-center p-2	py-4">
+			<div class="flex flex-row items-center">
+				<ButtonIcon transparent click={handleClick}><IconChevRonLeft /></ButtonIcon>
+				<h1 class="text-white text-lg font-semibold mb-[1px]">{$activeConversation.uniqueName}</h1>
+			</div>
+			<RoomActions {handleDelete} {handleInfoPanel} />
+		</header>
 		<Conversation />
 		<ConversationInput />
+		{#if showInfoGroup}
+			<InfoGroup click={handleInfoPanel} />
+		{/if}
 	</div>
-	{#if showInfoGroup}
-		<InfoGroup click={handleInfoPanel} />
-	{/if}
 {/if}
+
+<style>
+	.grid-room {
+		display: grid;
+		min-height: 100%;
+		grid-template-rows: max-content 1fr max-content;
+	}
+</style>

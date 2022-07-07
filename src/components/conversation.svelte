@@ -4,7 +4,7 @@
 
 	import Message from './message.svelte';
 
-	let div: HTMLDivElement;
+	let main: HTMLElement;
 
 	/**@typedef {{ body: string; author: string; dateCreated: string}} Message*/
 	/** @type {[Array<Message>}*/
@@ -23,12 +23,14 @@
 		}
 	});
 	afterUpdate(() => {
-		window.scrollTo(0, div.scrollHeight);
+		main.scroll({ top: main.scrollHeight, behavior: 'smooth' });
 	});
 </script>
 
-<div bind:this={div} class="w-full px-2 flex flex-col">
+<main bind:this={main} class="w-full h-full overflow-auto px-2 flex flex-col">
 	{#each messages as message}
 		<Message {message} />
+	{:else}
+		<div class="h-full text-white">No hay mensajes</div>
 	{/each}
-</div>
+</main>
