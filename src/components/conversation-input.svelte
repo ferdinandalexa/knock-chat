@@ -31,7 +31,7 @@
 			bind:this={textarea}
 			type="text"
 			placeholder="knock knock"
-			class="bg-white appearance-none border-2 border-blue-200 h-4 resize-none max-h-[10ch] rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400 flex-1"
+			class="bg-neutral-600 placeholder-neutral-400 border-2 border-neutral-500 transition-colors h-4 resize-none max-h-[10ch] rounded-md w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-slate-400 flex-1"
 			required
 		/>
 		<button
