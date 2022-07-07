@@ -28,20 +28,3 @@ const config = {
 };
 
 export default config;
-
-/**
- * 
- "@components/*": ["src/components/*"],
- "@icons/*": ["src/components/icons/*"],
- "@containers/*": ["src/containers/*"],
- "@routes/*": ["src/routes/*"],
- "@stores/*": ["src/stores/*"],
- "@services/*": ["src/services/*"],
- 
- $components: path.resolve("src/components)
- $icons: path.resolve("src/components/icons)
- $containers: path.resolve("src/containers)
- $routes: path.resolve("src/routes)
- $stores: path.resolve("src/stores)
- $services: path.resolve("src/services)
- */
