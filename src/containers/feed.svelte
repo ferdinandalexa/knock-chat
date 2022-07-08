@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+
 	import { signOut } from '$lib/OAuth';
 	import { userLogged } from '$stores/session';
 	import { isOpenModal } from '$stores/modal';
