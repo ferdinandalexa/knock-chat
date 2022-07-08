@@ -2,9 +2,10 @@
 	import { onMount } from 'svelte';
 
 	import { supabase } from '$lib/supabase';
-	import extractUserInfo from '$lib/extractUserInfo';
+	import { getUserInfo } from '$lib/getUserInfo';
+	import { setUserInfo } from '$lib/setUserInfo';
 
-	import { userLogged, isLoggedIn } from '$stores/session';
+	import { isLoggedIn } from '$stores/session';
 
 	import Feed from '$containers/feed.svelte';
 	import Login from '$containers/login.svelte';
@@ -19,25 +20,16 @@
 	/** @type {Session}*/
 	const session = supabase.auth.session();
 
-	supabase.auth.onAuthStateChange((event, session) => {
-		if (event === 'SIGNED_IN' && session != null) {
-			$userLogged = extractUserInfo(session?.user, session.access_token);
-			$isLoggedIn = true;
-		}
+	supabase.auth.onAuthStateChange(async (event, session) => {
+		if (event === 'SIGNED_IN' && session != null) await getUserInfo(session);
 
-		if (event === 'SIGNED_OUT') {
-			$userLogged = null;
-			$isLoggedIn = false;
-		}
+		if (event === 'SIGNED_OUT') setUserInfo(null, false);
 
 		isLoading = false;
 	});
 
-	onMount(() => {
-		if (session != null) {
-			$userLogged = extractUserInfo(session.user, session.access_token);
-			if ($userLogged != null) $isLoggedIn = true;
-		}
+	onMount(async () => {
+		if (session != null) await getUserInfo(session);
 
 		isLoading = false;
 	});
