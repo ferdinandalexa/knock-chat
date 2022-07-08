@@ -31,6 +31,8 @@
 	{#each messages as message}
 		<Message {message} />
 	{:else}
-		<div class="h-full text-white">No hay mensajes</div>
+		<div class="h-max text-white text-center w-max mx-auto px-2 py-1 rounded-md bg-neutral-600">
+			No hay mensajes
+		</div>
 	{/each}
 </main>
