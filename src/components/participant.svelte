@@ -17,7 +17,7 @@
 	/**@param {string} userSID*/
 	async function handleRemoveUser(userSID) {
 		if ($activeConversation != null) {
-			console.log(await $activeConversation.removeParticipant(userSID));
+			await $activeConversation.removeParticipant(userSID);
 		}
 	}
 </script>
@@ -32,7 +32,7 @@
 		<Dropdown>
 			<DropdownItem>Agregar a otras salas</DropdownItem>
 			<DropdownItem
-				click={() => {
+				on:click={() => {
 					handleRemoveUser(sid);
 				}}>Remover de la sala</DropdownItem
 			>

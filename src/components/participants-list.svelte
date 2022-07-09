@@ -15,7 +15,7 @@
 	/**@param {string} userIdentity*/
 	async function handleAddUser(userIdentity) {
 		if ($activeConversation != null) {
-			console.log(await $activeConversation.add('mariaando'));
+			await $activeConversation.add('mariaando');
 		}
 	}
 </script>
@@ -27,7 +27,7 @@
 			<Participant {identity} {sid} />
 		{/each}
 	</div>
-	<Button secondary css="border-none pl-2 text-neutral-400" click={handleAddUser}>
+	<Button secondary css="border-none pl-2 text-neutral-400" on:click={handleAddUser}>
 		<IconAddUser />Agregar participante
 	</Button>
 </section>

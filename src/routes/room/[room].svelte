@@ -3,10 +3,7 @@
 	import { browser } from '$app/env';
 
 	import { activeConversation } from '$stores/chat';
-	import { userLogged } from '$stores/session';
-	import { deleteChat } from '$services/chat';
 
-	import InfoGroup from '$containers/info-group.svelte';
 	import ButtonIcon from '$components/button-icon.svelte';
 	import Conversation from '$components/conversation.svelte';
 	import ConversationInput from '$components/conversation-input.svelte';
@@ -14,24 +11,8 @@
 
 	import IconChevRonLeft from '$icons/icon-chevron-left.svelte';
 
-	/**@type {boolean}*/
-	let showInfoGroup = false;
-
 	function handleClick() {
 		goto('/');
-	}
-
-	function handleInfoPanel() {
-		showInfoGroup = !showInfoGroup;
-	}
-
-	function handleDelete() {
-		if ($activeConversation != null && $userLogged != null) {
-			deleteChat($userLogged?.chatToken, $activeConversation.sid).then(() => {
-				$activeConversation = null;
-				goto('/');
-			});
-		}
 	}
 
 	if (browser) {
@@ -43,16 +24,13 @@
 	<div class="max-h-screen grid-room">
 		<header class="flex flex-row justify-between items-center p-2	py-4">
 			<div class="flex flex-row items-center">
-				<ButtonIcon transparent click={handleClick}><IconChevRonLeft /></ButtonIcon>
+				<ButtonIcon transparent on:click={handleClick}><IconChevRonLeft /></ButtonIcon>
 				<h1 class="text-white text-lg font-semibold mb-[1px]">{$activeConversation.uniqueName}</h1>
 			</div>
-			<RoomActions {handleDelete} {handleInfoPanel} />
+			<RoomActions />
 		</header>
 		<Conversation />
 		<ConversationInput />
-		{#if showInfoGroup}
-			<InfoGroup click={handleInfoPanel} />
-		{/if}
 	</div>
 {/if}
 

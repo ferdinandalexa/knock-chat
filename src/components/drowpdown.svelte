@@ -4,10 +4,12 @@
 
 	import IconMore from '$icons/icon-more.svelte';
 
+	/**@type {boolean}*/
 	let dropdownPopoverShow = false;
 
 	/**@type {HTMLButtonElement}*/
 	let btnDropdownRef;
+
 	/**@type {HTMLDivElement}*/
 	let popoverDropdownRef;
 
