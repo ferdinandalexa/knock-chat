@@ -21,7 +21,7 @@
 </script>
 
 {#if $activeConversation}
-	<div class="max-h-screen grid-room">
+	<div class="max-h-screen grid-room max-w-md mx-auto">
 		<header class="flex flex-row justify-between items-center p-2	py-4">
 			<div class="flex flex-row items-center">
 				<ButtonIcon transparent on:click={handleClick}><IconChevRonLeft /></ButtonIcon>
