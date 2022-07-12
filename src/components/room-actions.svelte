@@ -1,10 +1,4 @@
 <script>
-	import { goto } from '$app/navigation';
-
-	import { activeConversation } from '$stores/chat';
-	import { userLogged } from '$stores/session';
-	import { deleteChat } from '$services/chat';
-
 	import Dropdown from '$components/drowpdown.svelte';
 	import DropdownItem from '$components/dropdown-item.svelte';
 	import InfoPanel from '$containers/info-group.svelte';

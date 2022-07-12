@@ -38,16 +38,16 @@
 	<h3 class="text-lg font-semibold text-neutral-400">Participantes:</h3>
 	<div class="divide-y divide-solid divide-neutral-500 pl-2">
 		{#if $participantsChat != null}
-			{#each $participantsChat as { identity, sid }}
-				<Participant {identity} {sid} />
+			{#each $participantsChat as { identity, sid, roleSid }}
+				<Participant {identity} {sid} {roleSid} />
 			{/each}
 		{:else}
 			{#await participants}
 				Loading...
 			{:then participants}
 				{#if participants != undefined}
-					{#each participants as { identity, sid }}
-						<Participant {identity} {sid} />
+					{#each participants as { identity, sid, roleSid }}
+						<Participant {identity} {sid} {roleSid} />
 					{/each}
 				{/if}
 			{/await}
