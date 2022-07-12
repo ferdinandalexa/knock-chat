@@ -7,8 +7,20 @@
 	import Button from '$components/button.svelte';
 	import ButtonIcon from '$components/button-icon.svelte';
 	import ParticipantsList from '$components/participants-list.svelte';
+	import ModalDeleteRoom from '$components/modal-delete-room.svelte';
+
 	import IconClose from '$icons/icon-close.svelte';
 	import IconInfo from '$icons/icon-info.svelte';
+
+	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
+
+	/**@type {SvelteComponent | null}*/
+	let currentModal = null;
+
+	/**@type {Object.<string, any>}*/
+	let modals = {
+		'modal-delete': ModalDeleteRoom
+	};
 
 	const dispatch = createEventDispatcher();
 
@@ -16,8 +28,15 @@
 		dispatch('close', { id: null });
 	}
 
+	/**@param {CustomEvent} event*/
+	function handleModal(event) {
+		currentModal = modals[event.detail.id];
+	}
+
 	const participants = $activeConversation?.getParticipants();
 </script>
+
+<svelte:component this={currentModal} on:close={handleModal} />
 
 <div transition:fly={{ x: 200 }} class="w-full h-full top-0 left-0 fixed z-20 bg-neutral-700 p-4">
 	<div class="grid-room max-w-md mx-auto">
@@ -36,7 +55,7 @@
 			<ParticipantsList {participants} />
 		{/await}
 		<footer class="w-full left-0 p-4">
-			<Button secondary css="w-full">Eliminar chat</Button>
+			<Button on:click={handleModal} secondary css="w-full" id="modal-delete">Eliminar chat</Button>
 		</footer>
 	</div>
 </div>

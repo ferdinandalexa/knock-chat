@@ -8,7 +8,7 @@
 	import ButtonIcon from '$components/button-icon.svelte';
 	import IconLogout from '$components/icons/icon-logout.svelte';
 	import IconPlus from '$components/icons/icon-plus.svelte';
-	import ModalRoom from '$components/modal-room.svelte';
+	import ModalRoom from '$components/modal-add-room.svelte';
 
 	import '../app.css';
 
@@ -19,7 +19,7 @@
 
 	/**@type {Object.<string, any>}*/
 	let panels = {
-		'modal-delete': ModalRoom
+		'modal-add': ModalRoom
 	};
 
 	/**@param {CustomEvent} event*/
@@ -51,7 +51,7 @@
 	<div>
 		<RoomList />
 	</div>
-	<ButtonIcon on:click={handleModal} id="modal-delete" css="absolute bottom-6 right-6">
+	<ButtonIcon on:click={handleModal} id="modal-add" css="absolute bottom-6 right-6">
 		<IconPlus />
 	</ButtonIcon>
 </div>

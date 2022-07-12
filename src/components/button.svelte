@@ -1,6 +1,10 @@
 <script>
+	/**@type {string | null}*/
+	export let id = null;
+
 	/**@type {string}*/
 	export let css = '';
+
 	/**@type {boolean}*/
 	export let secondary = false;
 
@@ -9,7 +13,7 @@
 	const dispatch = createEventDispatcher();
 
 	function handleClick() {
-		dispatch('click', { id: null });
+		dispatch('click', { id });
 	}
 </script>
 
