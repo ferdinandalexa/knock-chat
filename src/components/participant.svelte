@@ -1,6 +1,6 @@
 <script>
 	import { userLogged } from '$stores/session';
-	import { activeConversation } from '$stores/chat';
+	import { activeConversation, participantsChat } from '$stores/chat';
 
 	import Dropdown from '$components/drowpdown.svelte';
 	import DropdownItem from '$components/dropdown-item.svelte';
@@ -18,6 +18,10 @@
 	async function handleRemoveUser(userSID) {
 		if ($activeConversation != null) {
 			await $activeConversation.removeParticipant(userSID);
+			if ($participantsChat != null) {
+				const updatedParticipantList = $participantsChat.filter(({ sid }) => sid !== userSID);
+				$participantsChat = updatedParticipantList;
+			}
 		}
 	}
 </script>

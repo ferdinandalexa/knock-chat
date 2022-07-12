@@ -1,16 +1,18 @@
 <script>
-	// import { createEventDispatcher } from 'svelte';
+	import { activeConversation } from '$stores/chat';
+	import { participantsChat } from '$stores/chat';
 
 	import Participant from '$components/participant.svelte';
 	import Button from '$components/button.svelte';
-	import IconAddUser from '$icons/icon-add-user.svelte';
 	import ModalAddParticipant from '$components/modal-add-participant.svelte';
+
+	import IconAddUser from '$icons/icon-add-user.svelte';
 
 	/**@typedef {import('@twilio/conversations').Participant} Participant*/
 	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
-	/**@type {Array<Participant>}*/
-	export let participants = [];
+	/**@type {Promise<void | Participant[]> | undefined}*/
+	let participants;
 
 	/**@type {SvelteComponent | null}*/
 	let currentModal = null;
@@ -20,12 +22,14 @@
 		'modal-add-participant': ModalAddParticipant
 	};
 
-	// const dispatch = createEventDispatcher();
-
 	/**@param {CustomEvent} event*/
 	function handleModal(event) {
 		currentModal = modals[event.detail.id];
 	}
+
+	participants = $activeConversation?.getParticipants().then((gettedParticipants) => {
+		$participantsChat = gettedParticipants;
+	});
 </script>
 
 <svelte:component this={currentModal} on:close={handleModal} />
@@ -33,9 +37,21 @@
 <section class="">
 	<h3 class="text-lg font-semibold text-neutral-400">Participantes:</h3>
 	<div class="divide-y divide-solid divide-neutral-500 pl-2">
-		{#each participants as { identity, sid }}
-			<Participant {identity} {sid} />
-		{/each}
+		{#if $participantsChat != null}
+			{#each $participantsChat as { identity, sid }}
+				<Participant {identity} {sid} />
+			{/each}
+		{:else}
+			{#await participants}
+				Loading...
+			{:then participants}
+				{#if participants != undefined}
+					{#each participants as { identity, sid }}
+						<Participant {identity} {sid} />
+					{/each}
+				{/if}
+			{/await}
+		{/if}
 	</div>
 	<Button
 		secondary

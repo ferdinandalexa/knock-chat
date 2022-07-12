@@ -32,8 +32,6 @@
 	function handleModal(event) {
 		currentModal = modals[event.detail.id];
 	}
-
-	const participants = $activeConversation?.getParticipants();
 </script>
 
 <svelte:component this={currentModal} on:close={handleModal} />
@@ -49,11 +47,7 @@
 				<IconClose width={20} height={20} />
 			</ButtonIcon>
 		</header>
-		{#await participants}
-			Loading...
-		{:then participants}
-			<ParticipantsList {participants} />
-		{/await}
+		<ParticipantsList />
 		<footer class="w-full left-0 p-4">
 			<Button on:click={handleModal} secondary css="w-full" id="modal-delete">Eliminar chat</Button>
 		</footer>

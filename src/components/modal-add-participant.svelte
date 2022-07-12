@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	import { activeConversation } from '$stores/chat';
+	import { activeConversation, participantsChat } from '$stores/chat';
 
 	import Button from '$components/button.svelte';
 
@@ -15,13 +15,21 @@
 		dispatch('close', { id: null });
 	}
 
-	async function handleAddNewParticipant() {
+	function handleAddNewParticipant() {
 		if ($activeConversation != null) {
-			const result = await $activeConversation.add(newParticipantID);
-			// console.log(result);
+			$activeConversation
+				.add(newParticipantID)
+				.then((addedParticipant) => {
+					if ($participantsChat != null) {
+						//@ts-ignore
+						$participantsChat = [...$participantsChat, addedParticipant];
+						dispatch('close', { id: null });
+					}
+				})
+				.catch(() => {
+					console.log('Usuario no valido');
+				});
 		}
-
-		dispatch('close', { id: null });
 	}
 </script>
 
