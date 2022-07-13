@@ -3,6 +3,7 @@
 	import DropdownItem from '$components/dropdown-item.svelte';
 	import InfoPanel from '$containers/info-group.svelte';
 	import ModalDeleteRoom from './modal-delete-room.svelte';
+	import ModalLeaveRoom from './modal-leave-room.svelte';
 
 	import IconLogout from '$icons/icon-logout.svelte';
 	import IconInfo from '$icons/icon-info.svelte';
@@ -18,6 +19,7 @@
 	/**@type {Object.<string, any>}*/
 	let panels = {
 		'info-panel': InfoPanel,
+		'modal-leave': ModalLeaveRoom,
 		'modal-delete': ModalDeleteRoom
 	};
 
@@ -31,7 +33,7 @@
 	<DropdownItem on:click={handlePanel} id="info-panel">
 		<IconInfo width={16} height={16} />Información del grupo
 	</DropdownItem>
-	<DropdownItem on:click={handlePanel} id="info-panel">
+	<DropdownItem on:click={handlePanel} id="modal-leave">
 		<IconLogout width={16} height={16} />Abandonar grupo
 	</DropdownItem>
 	{#if isAdmin}
