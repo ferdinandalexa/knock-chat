@@ -27,10 +27,10 @@
 >
 	<div class="bg-neutral-700 p-6 rounded-md w-full max-w-md ">
 		<header class="mb-2 flex flex-row gap-2 text-neutral-200 items-center">
-			<h3 class="font-semibold text-xl mb-[1px]">Eliminar sala</h3>
+			<h3 class="font-semibold text-xl mb-[1px]">Abandonar sala</h3>
 		</header>
 		<p class="text-neutral-200 mb-4 px-1">
-			Si abandonas el grupo no podrás leer los mensajes. ¿Deseas continuar?
+			Si abandonas la sala no podrás leer los mensajes. ¿Deseas continuar?
 		</p>
 		<footer class="flex flex-row gap-2">
 			<Button on:click={handleAddNewParticipant} css="flex-1">Abandonar</Button>
