@@ -8,6 +8,8 @@
 	import IconInfo from '$icons/icon-info.svelte';
 	import IconDelete from '$icons/icon-delete.svelte';
 
+	export let isAdmin = true;
+
 	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
 	/**@type {SvelteComponent | null}*/
@@ -32,9 +34,11 @@
 	<DropdownItem on:click={handlePanel} id="info-panel">
 		<IconLogout width={16} height={16} />Abandonar grupo
 	</DropdownItem>
-	<DropdownItem on:click={handlePanel} id="modal-delete">
-		<IconDelete width={16} height={16} />Eliminar
-	</DropdownItem>
+	{#if isAdmin}
+		<DropdownItem on:click={handlePanel} id="modal-delete">
+			<IconDelete width={16} height={16} />Eliminar
+		</DropdownItem>
+	{/if}
 </Dropdown>
 
-<svelte:component this={currentPanel} on:close={handlePanel} />
+<svelte:component this={currentPanel} on:close={handlePanel} {isAdmin} />

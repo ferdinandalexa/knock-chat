@@ -1,5 +1,4 @@
 <script>
-	import { activeConversation } from '$stores/chat';
 	import { participantsChat } from '$stores/chat';
 
 	import Participant from '$components/participant.svelte';
@@ -8,11 +7,9 @@
 
 	import IconAddUser from '$icons/icon-add-user.svelte';
 
-	/**@typedef {import('@twilio/conversations').Participant} Participant*/
-	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
+	export let isAdmin = false;
 
-	/**@type {Promise<void | Participant[]> | undefined}*/
-	let participants;
+	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
 	/**@type {SvelteComponent | null}*/
 	let currentModal = null;
@@ -26,10 +23,6 @@
 	function handleModal(event) {
 		currentModal = modals[event.detail.id];
 	}
-
-	participants = $activeConversation?.getParticipants().then((gettedParticipants) => {
-		$participantsChat = gettedParticipants;
-	});
 </script>
 
 <svelte:component this={currentModal} on:close={handleModal} />
@@ -38,19 +31,9 @@
 	<h3 class="text-lg font-semibold text-neutral-400">Participantes:</h3>
 	<div class="divide-y divide-solid divide-neutral-500 pl-2">
 		{#if $participantsChat != null}
-			{#each $participantsChat as { identity, sid, roleSid }}
-				<Participant {identity} {sid} {roleSid} />
+			{#each $participantsChat as { participant: { identity, sid }, typeRole }}
+				<Participant {identity} {sid} {typeRole} {isAdmin} />
 			{/each}
-		{:else}
-			{#await participants}
-				Loading...
-			{:then participants}
-				{#if participants != undefined}
-					{#each participants as { identity, sid, roleSid }}
-						<Participant {identity} {sid} {roleSid} />
-					{/each}
-				{/if}
-			{/await}
 		{/if}
 	</div>
 	<Button

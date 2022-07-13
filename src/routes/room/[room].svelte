@@ -1,8 +1,10 @@
 <script>
+	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { browser } from '$app/env';
 
-	import { activeConversation } from '$stores/chat';
+	import { setParticipants } from '$lib/setParticipants';
+	import { activeConversation, participantsChat } from '$stores/chat';
+	import { userLogged } from '$stores/session';
 
 	import ButtonIcon from '$components/button-icon.svelte';
 	import Conversation from '$components/conversation.svelte';
@@ -11,13 +13,24 @@
 
 	import IconChevRonLeft from '$icons/icon-chevron-left.svelte';
 
+	let isAdmin = false;
+
+	$activeConversation?.getParticipants().then((gettedParticipants) => {
+		setParticipants(gettedParticipants);
+		$participantsChat?.forEach(({ participant, typeRole }) => {
+			if (participant.identity === $userLogged.name) {
+				isAdmin = typeRole === 'admin';
+			}
+		});
+	});
+
 	function handleClick() {
 		goto('/');
 	}
 
-	if (browser) {
+	onMount(() => {
 		if (!$activeConversation) goto('/');
-	}
+	});
 </script>
 
 {#if $activeConversation}
@@ -25,9 +38,11 @@
 		<header class="flex flex-row justify-between items-center p-2	py-4">
 			<div class="flex flex-row items-center">
 				<ButtonIcon transparent on:click={handleClick}><IconChevRonLeft /></ButtonIcon>
-				<h1 class="text-white text-lg font-semibold mb-[1px]">{$activeConversation.uniqueName}</h1>
+				<h1 class="text-white text-lg font-semibold mb-[1px]">
+					{$activeConversation.uniqueName}
+				</h1>
 			</div>
-			<RoomActions />
+			<RoomActions {isAdmin} />
 		</header>
 		<Conversation />
 		<ConversationInput />

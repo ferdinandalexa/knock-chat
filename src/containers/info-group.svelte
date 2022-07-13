@@ -12,6 +12,8 @@
 	import IconClose from '$icons/icon-close.svelte';
 	import IconInfo from '$icons/icon-info.svelte';
 
+	export let isAdmin = true;
+
 	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
 	/**@type {SvelteComponent | null}*/
@@ -47,10 +49,14 @@
 				<IconClose width={20} height={20} />
 			</ButtonIcon>
 		</header>
-		<ParticipantsList />
-		<footer class="w-full left-0 p-4">
-			<Button on:click={handleModal} secondary css="w-full" id="modal-delete">Eliminar chat</Button>
-		</footer>
+		<ParticipantsList {isAdmin} />
+		{#if isAdmin}
+			<footer class="w-full left-0 p-4">
+				<Button on:click={handleModal} secondary css="w-full" id="modal-delete"
+					>Eliminar chat</Button
+				>
+			</footer>
+		{/if}
 	</div>
 </div>
 

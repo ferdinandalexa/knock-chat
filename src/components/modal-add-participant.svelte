@@ -19,10 +19,11 @@
 		if ($activeConversation != null) {
 			$activeConversation
 				.add(newParticipantID)
-				.then((addedParticipant) => {
+				.then((participant) => {
 					if ($participantsChat != null) {
+						const newParticipant = { participant, typeRole: 'user' };
 						//@ts-ignore
-						$participantsChat = [...$participantsChat, addedParticipant];
+						$participantsChat = [...$participantsChat, newParticipant];
 						dispatch('close', { id: null });
 					}
 				})

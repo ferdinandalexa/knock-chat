@@ -5,7 +5,7 @@ import { writable } from 'svelte/store';
  * @typedef {import('@twilio/conversations').Participant} Participant
  * @typedef {import('svelte/store').Writable<Conversation | null>} StoreConversation
  * @typedef {import('svelte/store').Writable<Array<Conversation> | null>} StoreConversationArray
- * @typedef {import('svelte/store').Writable<Array<Participant> | null>} StoreParticipantArray
+ * @typedef {import('svelte/store').Writable<Array<{participant: Participant; typeRole: string}> | null>} StoreParticipantArray
  */
 
 /** @type {StoreConversationArray} */
