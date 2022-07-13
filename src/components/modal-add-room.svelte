@@ -23,7 +23,7 @@
 				room: roomName,
 				accessToken: $userLogged?.chatToken
 			}).then((conversation) => {
-				if ($chatList != null) {
+				if ($chatList != null && conversation) {
 					$chatList = [conversation, ...$chatList];
 				}
 				dispatch('close', { id: null });

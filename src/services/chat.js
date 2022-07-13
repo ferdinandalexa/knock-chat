@@ -14,14 +14,13 @@ export const createOrJoinConversation = async ({ room, accessToken }) => {
 				} catch (e) {
 					try {
 						conversation = await client.getConversationByUniqueName(room);
-						console.log(conversation);
 					} catch (e) {
 						reject(e);
 					}
 				}
 
-				resolve(conversation);
 				conversation?.join();
+				resolve(conversation);
 			}
 		});
 	});
