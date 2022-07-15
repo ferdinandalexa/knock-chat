@@ -58,7 +58,7 @@
 					required
 				/>
 				<div class="flex flex-row gap-2 w-full items-center justify-center">
-					<Button on:click={handleAddNewParticipant} css="flex-1">Crear grupo</Button>
+					<Button on:click={handleAddNewParticipant} css="flex-1">Agregar</Button>
 					<Button on:click={handleClose} css="flex-1" secondary>Regresar</Button>
 				</div>
 			</div>
