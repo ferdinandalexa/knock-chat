@@ -1,4 +1,6 @@
 <script>
+	import { getContext } from 'svelte';
+
 	import { participantsChat } from '$stores/chat';
 
 	import Participant from '$components/participant.svelte';
@@ -6,8 +8,6 @@
 	import ModalAddParticipant from '$components/modal-add-participant.svelte';
 
 	import IconAddUser from '$icons/icon-add-user.svelte';
-
-	export let isAdmin = false;
 
 	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
@@ -18,6 +18,8 @@
 	let modals = {
 		'modal-add-participant': ModalAddParticipant
 	};
+
+	let { isAdmin } = getContext('admin');
 
 	/**@param {CustomEvent} event*/
 	function handleModal(event) {
@@ -32,16 +34,18 @@
 	<div class="divide-y divide-solid divide-neutral-500 pl-2">
 		{#if $participantsChat != null}
 			{#each $participantsChat as { participant: { identity, sid }, typeRole }}
-				<Participant {identity} {sid} {typeRole} {isAdmin} />
+				<Participant {identity} {sid} {typeRole} />
 			{/each}
 		{/if}
 	</div>
-	<Button
-		secondary
-		css="border-none pl-2 text-neutral-400"
-		on:click={handleModal}
-		id="modal-add-participant"
-	>
-		<IconAddUser />Agregar participante
-	</Button>
+	{#if isAdmin}
+		<Button
+			secondary
+			css="border-none pl-2 text-neutral-400"
+			on:click={handleModal}
+			id="modal-add-participant"
+		>
+			<IconAddUser />Agregar participante
+		</Button>
+	{/if}
 </section>

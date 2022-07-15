@@ -1,11 +1,11 @@
 <script>
+	import { getContext } from 'svelte';
+
 	import { userLogged } from '$stores/session';
 	import { activeConversation, participantsChat } from '$stores/chat';
 
 	import Dropdown from '$components/drowpdown.svelte';
 	import DropdownItem from '$components/dropdown-item.svelte';
-
-	export let isAdmin = false;
 
 	/**@type {string}*/
 	export let sid;
@@ -18,6 +18,8 @@
 
 	let isUserLogged = false;
 	if ($userLogged) isUserLogged = $userLogged.name === identity;
+
+	let { isAdmin } = getContext('admin');
 
 	/**@param {string} userSID*/
 	async function handleRemoveUser(userSID) {

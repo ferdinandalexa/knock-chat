@@ -1,5 +1,5 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import { fly } from 'svelte/transition';
 
 	import { activeConversation } from '$stores/chat';
@@ -12,7 +12,7 @@
 	import IconClose from '$icons/icon-close.svelte';
 	import IconInfo from '$icons/icon-info.svelte';
 
-	export let isAdmin = true;
+	let { isAdmin } = getContext('admin');
 
 	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
@@ -49,7 +49,7 @@
 				<IconClose width={20} height={20} />
 			</ButtonIcon>
 		</header>
-		<ParticipantsList {isAdmin} />
+		<ParticipantsList />
 		{#if isAdmin}
 			<footer class="w-full left-0 p-4">
 				<Button on:click={handleModal} secondary css="w-full" id="modal-delete"

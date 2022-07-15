@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, setContext } from 'svelte';
 	import { goto } from '$app/navigation';
 
 	import { setParticipants } from '$lib/setParticipants';
@@ -15,13 +15,13 @@
 
 	let isAdmin = false;
 
+	if ($userLogged != null) {
+		const isAdmin = $activeConversation?.createdBy === $userLogged.name;
+		setContext('admin', { isAdmin });
+	}
+
 	$activeConversation?.getParticipants().then((gettedParticipants) => {
 		setParticipants(gettedParticipants);
-		$participantsChat?.forEach(({ participant, typeRole }) => {
-			if (participant.identity === $userLogged.name) {
-				isAdmin = typeRole === 'admin';
-			}
-		});
 	});
 
 	function handleClick() {
@@ -42,7 +42,7 @@
 					{$activeConversation.uniqueName}
 				</h1>
 			</div>
-			<RoomActions {isAdmin} />
+			<RoomActions />
 		</header>
 		<Conversation />
 		<ConversationInput />

@@ -1,4 +1,6 @@
 <script>
+	import { getContext } from 'svelte';
+
 	import Dropdown from '$components/drowpdown.svelte';
 	import DropdownItem from '$components/dropdown-item.svelte';
 	import InfoPanel from '$containers/info-group.svelte';
@@ -8,8 +10,6 @@
 	import IconLogout from '$icons/icon-logout.svelte';
 	import IconInfo from '$icons/icon-info.svelte';
 	import IconDelete from '$icons/icon-delete.svelte';
-
-	export let isAdmin = true;
 
 	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
@@ -22,6 +22,8 @@
 		'modal-leave': ModalLeaveRoom,
 		'modal-delete': ModalDeleteRoom
 	};
+
+	let { isAdmin } = getContext('admin');
 
 	/**@param {CustomEvent} event*/
 	function handlePanel(event) {
@@ -43,4 +45,4 @@
 	{/if}
 </Dropdown>
 
-<svelte:component this={currentPanel} on:close={handlePanel} {isAdmin} />
+<svelte:component this={currentPanel} on:close={handlePanel} />
