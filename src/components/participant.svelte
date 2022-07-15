@@ -48,7 +48,6 @@
 						handleRemoveUser(sid);
 					}}>Remover de la sala</DropdownItem
 				>
-				<DropdownItem>Hacer admnin</DropdownItem>
 			{/if}
 		</Dropdown>
 	{/if}
