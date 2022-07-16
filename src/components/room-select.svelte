@@ -1,7 +1,9 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 
+	/**@type {string | null}*/
 	export let name = '';
+
 	export let sid = '';
 
 	let isSelected = false;

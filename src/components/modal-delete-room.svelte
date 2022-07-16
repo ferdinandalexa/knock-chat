@@ -35,8 +35,7 @@
 			<h3 class="font-semibold text-xl mb-[1px]">Eliminar sala</h3>
 		</header>
 		<div class="px-1 text-neutral-200">
-			<p>Si eliminas la sala ya no podras recuperarla.</p>
-			<p>¿Aún así quieres continuar?</p>
+			<p>Si eliminas la sala no podras recuperar su contenido. ¿Quieres continuar?</p>
 		</div>
 		<footer class="flex flex-row gap-2 mt-4">
 			<Button on:click={handleDelete} css="flex-1 bg-red-600 hover:bg-red-700 active:bg-red-800">
