@@ -13,8 +13,6 @@
 
 	import IconChevRonLeft from '$icons/icon-chevron-left.svelte';
 
-	let isAdmin = false;
-
 	if ($userLogged != null) {
 		const isAdmin = $activeConversation?.createdBy === $userLogged.name;
 		setContext('admin', { isAdmin });

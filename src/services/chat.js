@@ -42,3 +42,14 @@ export const deleteChat = async (accessToken, sid) => {
 	const conversation = await client.getConversationBySid(sid);
 	conversation.delete();
 };
+
+/**
+ * @param {string} accessToken
+ * @param {string} sid
+ * @param {string} participantName
+ */
+export const addParticipant = async (accessToken, sid, participantName) => {
+	const client = new Client(accessToken);
+	const conversation = await client.getConversationBySid(sid);
+	conversation.add(participantName);
+};
