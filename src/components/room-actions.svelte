@@ -35,9 +35,11 @@
 	<DropdownItem on:click={handlePanel} id="info-panel">
 		<IconInfo width={16} height={16} />Información del grupo
 	</DropdownItem>
-	<DropdownItem on:click={handlePanel} id="modal-leave">
-		<IconLogout width={16} height={16} />Abandonar grupo
-	</DropdownItem>
+	{#if !isAdmin}
+		<DropdownItem on:click={handlePanel} id="modal-leave">
+			<IconLogout width={16} height={16} />Abandonar grupo
+		</DropdownItem>
+	{/if}
 	{#if isAdmin}
 		<DropdownItem on:click={handlePanel} id="modal-delete">
 			<IconDelete width={16} height={16} />Eliminar
