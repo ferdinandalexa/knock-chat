@@ -11,6 +11,9 @@ export const createOrJoinConversation = async ({ room, accessToken }) => {
 
 				try {
 					conversation = await client.createConversation({ uniqueName: room });
+					await conversation.updateAttributes({
+						cover: 'default'
+					});
 				} catch (e) {
 					try {
 						conversation = await client.getConversationByUniqueName(room);

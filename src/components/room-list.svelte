@@ -23,14 +23,24 @@
 
 {#if $chatList != null}
 	{#each $chatList as room}
-		<RoomCard uniqueName={room.uniqueName} sid={room.sid} {room} />
+		<RoomCard
+			uniqueName={room.uniqueName}
+			sid={room.sid}
+			cover={room.attributes.cover || 'default'}
+			{room}
+		/>
 	{/each}
 {:else}
 	{#await response}
 		<p class="text-white">Waiting rooms...</p>
 	{:then rooms}
 		{#each rooms as room}
-			<RoomCard uniqueName={room.uniqueName} sid={room.sid} {room} />
+			<RoomCard
+				uniqueName={room.uniqueName}
+				sid={room.sid}
+				cover={room.attributes.cover || 'default'}
+				{room}
+			/>
 		{/each}
 	{:catch error}
 		<p class="text-white">{error}</p>
