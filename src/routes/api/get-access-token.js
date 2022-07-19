@@ -8,7 +8,7 @@ const TWILIO_SERVICE_SID = import.meta.env.VITE_PUBLIC_TWILIO_SERVICE_SID;
 
 /**@typedef {import('@sveltejs/kit').RequestHandler} RequestHandler*/
 /** @type {RequestHandler}*/
-export const get = async ({ request }) => {
+export async function GET({ request }) {
 	const jwt = request.headers.get('jwt');
 
 	if (jwt == null) return { status: 401 };
@@ -36,4 +36,4 @@ export const get = async ({ request }) => {
 			accessToken: accessToken.toJwt()
 		}
 	};
-};
+}
