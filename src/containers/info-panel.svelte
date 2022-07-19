@@ -6,8 +6,10 @@
 
 	import Button from '$components/button.svelte';
 	import ButtonIcon from '$components/button-icon.svelte';
+	import Picture from '$components/picture.svelte';
 	import ParticipantsList from '$components/participants-list.svelte';
 	import ModalDeleteRoom from '$components/modal-delete-room.svelte';
+	import PanelPictures from '$containers/panel-pictures.svelte';
 
 	import IconClose from '$icons/icon-close.svelte';
 	import IconInfo from '$icons/icon-info.svelte';
@@ -21,10 +23,17 @@
 
 	/**@type {Object.<string, any>}*/
 	let modals = {
-		'modal-delete': ModalDeleteRoom
+		'modal-delete': ModalDeleteRoom,
+		'select-picture': PanelPictures
 	};
 
 	const dispatch = createEventDispatcher();
+
+	/**@type {string}*/
+	let cover;
+
+	if ($activeConversation?.attributes != null)
+		cover = $activeConversation?.attributes.cover ?? 'default';
 
 	function handleClick() {
 		dispatch('close', { id: null });
@@ -33,6 +42,14 @@
 	/**@param {CustomEvent} event*/
 	function handleModal(event) {
 		currentModal = modals[event.detail.id];
+
+		const changePicture = event.detail.changePicture;
+
+		if (changePicture) {
+			console.log('changePicture');
+			const newPicture = event.detail.newPicture;
+			cover = newPicture;
+		}
 	}
 </script>
 
@@ -51,10 +68,7 @@
 		</header>
 		<div>
 			<div class="flex flex-col items-center justify-center my-8 gap-2 rounded-full">
-				<img
-					src="/pictures/{$activeConversation?.attributes.cover}.png"
-					alt="{$activeConversation?.uniqueName} picture"
-				/>
+				<Picture on:click={handleModal} uniqueName={$activeConversation?.uniqueName} {cover} />
 				<h2 class="text-2xl font-semibold text-white">{$activeConversation?.uniqueName}</h2>
 			</div>
 			<ParticipantsList />
