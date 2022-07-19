@@ -3,7 +3,7 @@
 
 	import Dropdown from '$components/drowpdown.svelte';
 	import DropdownItem from '$components/dropdown-item.svelte';
-	import InfoPanel from '$containers/info-group.svelte';
+	import InfoPanel from '$containers/info-panel.svelte';
 	import ModalDeleteRoom from './modal-delete-room.svelte';
 	import ModalLeaveRoom from './modal-leave-room.svelte';
 
