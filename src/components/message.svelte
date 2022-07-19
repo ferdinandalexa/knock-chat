@@ -19,7 +19,14 @@
 	let remote = 'bg-amber-200 text-left self-start';
 </script>
 
-<div class={`m-2 w-max max-w-[75%] py-2 px-3 rounded-md ${userOrigin ? local : remote}`}>
+<div class="m-2 w-max max-w-[75%] py-2 px-3 rounded-md {userOrigin ? local : remote}">
+	<h3
+		class="text-sm  font-semibold text-blue-800 tracking-wide mb-2 {userOrigin
+			? 'text-blue-800'
+			: 'text-amber-700'}"
+	>
+		{author}
+	</h3>
 	<p class="text-black m-0 p-0 ">{body}</p>
 	<time datetime={dateFormated} class="text-black opacity-40 text-xs">{dateFormated}</time>
 </div>
