@@ -43,13 +43,22 @@
 		<header class="w-full flex flex-row justify-between text-neutral-200 items-center">
 			<div class="flex flex-row gap-2 items-center ">
 				<IconInfo width={20} height={20} />
-				<h2 class="font-semibold text-lg">{$activeConversation?.uniqueName}</h2>
+				<h2 class="font-semibold text-lg">Información de la sala</h2>
 			</div>
 			<ButtonIcon on:click={handleClick} transparent>
 				<IconClose width={20} height={20} />
 			</ButtonIcon>
 		</header>
-		<ParticipantsList />
+		<div>
+			<div class="flex flex-col items-center justify-center my-8 gap-2 rounded-full">
+				<img
+					src="/pictures/{$activeConversation?.attributes.cover}.png"
+					alt="{$activeConversation?.uniqueName} picture"
+				/>
+				<h2 class="text-2xl font-semibold text-white">{$activeConversation?.uniqueName}</h2>
+			</div>
+			<ParticipantsList />
+		</div>
 		{#if isAdmin}
 			<footer class="w-full left-0 p-4">
 				<Button on:click={handleModal} secondary css="w-full" id="modal-delete"
