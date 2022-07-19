@@ -38,7 +38,12 @@
 <div class="flex flex-col gap-3 max-w-md mx-auto p-4 h-full relative">
 	<header class="flex flex-row gap-3 items-center justify-between">
 		<div class="flex flex-row gap-3 items-center">
-			<img class="rounded-full w-8" src={$userLogged?.avatar} alt="" />
+			<img
+				class="rounded-full w-8"
+				src={$userLogged?.avatar}
+				alt="{$userLogged?.name} profile picture"
+				referrerpolicy="no-referrer"
+			/>
 			<span class="text-white text-lg">
 				{$userLogged?.name}
 			</span>
