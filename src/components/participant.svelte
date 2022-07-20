@@ -56,7 +56,7 @@
 		<span class="text-neutral-400 text-sm mt-[2px]">{`(${typeRole})`}</span>
 	</div>
 
-	<svelte:component this={currentPanel} on:close={handlePanel} />
+	<svelte:component this={currentPanel} on:close={handlePanel} participant={identity} />
 
 	{#if !isUserLogged}
 		<Dropdown>

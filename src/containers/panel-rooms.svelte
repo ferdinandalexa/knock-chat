@@ -16,6 +16,9 @@
 
 	/**@typedef {import('svelte').SvelteComponent} SvelteComponent*/
 
+	/**@type {string}*/
+	export let participant;
+
 	/**@type {SvelteComponent | null}*/
 	let currentModal = null;
 
@@ -30,6 +33,9 @@
 
 	/**@type {Conversation[]}*/
 	let otherChats;
+
+	/**@type {string}*/
+	let messageError;
 
 	/**@type {Array<{sid: string}> | []}*/
 	let selectedRooms = [];
@@ -66,9 +72,19 @@
 		}
 	}
 
-	async function handleAdd() {
-		await selectedRooms.forEach(async (room) => {
-			if ($userLogged) addParticipant($userLogged?.chatToken, room.sid, 'mariaando');
+	function handleAdd() {
+		Promise.allSettled(
+			selectedRooms.map((room) => {
+				if ($userLogged) return addParticipant($userLogged?.chatToken, room.sid, participant);
+			})
+		).then((values) => {
+			values.forEach((promise) => {
+				if (promise.status === 'rejected') {
+					console.log(promise);
+					messageError = promise.reason.body.message;
+				}
+			});
+			if (messageError == null) dispatch('close', { id: null });
 		});
 	}
 </script>
@@ -87,10 +103,19 @@
 			</ButtonIcon>
 		</header>
 		<div class="mt-4 flex flex-col gap-2">
-			{#each otherChats as { uniqueName, sid }}
-				<RoomSelect on:select={handleSelect} name={uniqueName} {sid} />
-			{/each}
+			{#if otherChats.length > 0}
+				{#each otherChats as { uniqueName, sid }}
+					<RoomSelect on:select={handleSelect} name={uniqueName} {sid} />
+				{/each}
+			{:else}
+				<p>No tienes más chats</p>
+			{/if}
 		</div>
+		{#if messageError != null}
+			<p class="w-full text-center text-red-400 mb-2">
+				{messageError}
+			</p>
+		{/if}
 		<Button disabled={selectedRooms.length === 0} on:click={handleAdd}>Agregar</Button>
 	</div>
 </div>
