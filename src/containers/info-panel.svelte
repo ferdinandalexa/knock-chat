@@ -34,6 +34,7 @@
 	let cover;
 
 	if ($activeConversation?.attributes != null)
+		/**@ts-ignore*/
 		cover = $activeConversation?.attributes.cover ?? 'default';
 
 	function handleClick() {
