@@ -74,7 +74,7 @@
 				<Picture on:click={handleModal} uniqueName={$activeConversation?.uniqueName} {cover} />
 				<h2 class="text-2xl font-semibold text-white">{$activeConversation?.uniqueName}</h2>
 			</div>
-			<div class="divide-y divide-solid divide-neutral-500">
+			<div class="divide-y divide-solid divide-neutral-600">
 				<ParticipantsList />
 				<Invite sid={$activeConversation?.sid} />
 			</div>
