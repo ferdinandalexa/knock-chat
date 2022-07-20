@@ -17,9 +17,6 @@
 
 	/** @typedef {import('@supabase/supabase-js').Session | null} Session*/
 
-	/** @type {boolean}*/
-	let isLoading = true;
-
 	/** @type {Session}*/
 	const session = supabase.auth.session();
 
@@ -27,14 +24,10 @@
 		if (event === 'SIGNED_IN' && session != null) await getUserInfo(session);
 
 		if (event === 'SIGNED_OUT') setUserInfo(null, false);
-
-		isLoading = false;
 	});
 
 	onMount(async () => {
 		if (session != null) await getUserInfo(session);
-
-		isLoading = false;
 	});
 
 	const roomSID = $page.params.invite;

@@ -4,6 +4,7 @@
 
 	import { activeConversation } from '$stores/chat';
 
+	import Invite from '$components/invite.svelte';
 	import Button from '$components/button.svelte';
 	import ButtonIcon from '$components/button-icon.svelte';
 	import Picture from '$components/picture.svelte';
@@ -56,7 +57,7 @@
 <svelte:component this={currentModal} on:close={handleModal} />
 
 <div transition:fly={{ x: 200 }} class="w-full h-full top-0 left-0 fixed z-20 bg-neutral-700 p-4">
-	<div class="grid-room max-w-md mx-auto">
+	<div class="grid-room w-full mx-auto max-w-md">
 		<header class="w-full flex flex-row justify-between text-neutral-200 items-center">
 			<div class="flex flex-row gap-2 items-center ">
 				<IconInfo width={20} height={20} />
@@ -66,13 +67,18 @@
 				<IconClose width={20} height={20} />
 			</ButtonIcon>
 		</header>
-		<div>
+
+		<section class="w-full">
 			<div class="flex flex-col items-center justify-center my-8 gap-2 rounded-full">
 				<Picture on:click={handleModal} uniqueName={$activeConversation?.uniqueName} {cover} />
 				<h2 class="text-2xl font-semibold text-white">{$activeConversation?.uniqueName}</h2>
 			</div>
-			<ParticipantsList />
-		</div>
+			<div class="divide-y divide-solid divide-neutral-500">
+				<ParticipantsList />
+				<Invite sid={$activeConversation?.sid} />
+			</div>
+		</section>
+
 		{#if isAdmin}
 			<footer class="w-full left-0 p-4">
 				<Button on:click={handleModal} secondary css="w-full" id="modal-delete"
