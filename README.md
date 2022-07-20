@@ -1,4 +1,6 @@
 
+![](/knock-twilio.png)
+
 <div align="center">
   <a target="_blank" href="https://svelte.dev/">
     <img title="Svelte" alt="Svelte badge" src="https://img.shields.io/badge/Svelte-v3.44.00-orange" />
@@ -16,4 +18,15 @@
 ## Features
 
 - [X] OAuth with Google or Github Account
-- [X] List all user's chats 
+- [X] Create and delete chats
+- [X] List all user's suscribed chats 
+- [X] Add a participant from current chat to others created
+- [X] Remove participant from a chat
+- [X] Chat admin and common user have differents room actions
+- [X] Change chat profile picture
+- [X] Get chat's invitation
+- [X] Join chat by invitation
+
+## References
+
+[Original repo by Midudev](https://github.com/midudev/chat-hackathon)
