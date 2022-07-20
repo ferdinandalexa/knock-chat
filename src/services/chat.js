@@ -56,3 +56,13 @@ export const addParticipant = async (accessToken, sid, participantName) => {
 	const conversation = await client.getConversationBySid(sid);
 	return conversation.add(participantName);
 };
+
+/**
+ * @param {string} accessToken
+ * @param {string} sid
+ */
+export const getConversation = async (accessToken, sid) => {
+	const client = new Client(accessToken);
+	const conversation = await client.getConversationBySid(sid);
+	return conversation;
+};

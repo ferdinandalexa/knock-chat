@@ -72,6 +72,8 @@
 		}
 	}
 
+	const CODE_ALREADY_EXIST = '50433';
+
 	function handleAdd() {
 		Promise.allSettled(
 			selectedRooms.map((room) => {
@@ -80,8 +82,10 @@
 		).then((values) => {
 			values.forEach((promise) => {
 				if (promise.status === 'rejected') {
-					console.log(promise);
-					messageError = promise.reason.body.message;
+					const {
+						body: { code, message }
+					} = promise.reason;
+					messageError = code === CODE_ALREADY_EXIST ?? message;
 				}
 			});
 			if (messageError == null) dispatch('close', { id: null });
