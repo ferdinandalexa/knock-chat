@@ -57,7 +57,10 @@
 
 <svelte:component this={currentModal} on:close={handleModal} />
 
-<div transition:fly={{ x: 200 }} class="w-full h-full top-0 left-0 fixed z-20 bg-neutral-700 p-4">
+<div
+	transition:fly={{ x: 200 }}
+	class="w-full h-full top-0 left-0 fixed z-20 bg-neutral-700 p-4 overflow-y-scroll"
+>
 	<div class="grid-room w-full mx-auto max-w-md">
 		<header class="w-full flex flex-row justify-between text-neutral-200 items-center">
 			<div class="flex flex-row gap-2 items-center ">
@@ -69,7 +72,7 @@
 			</ButtonIcon>
 		</header>
 
-		<section class="w-full">
+		<section class="w-full ">
 			<div class="flex flex-col items-center justify-center my-8 gap-2 rounded-full">
 				<Picture on:click={handleModal} uniqueName={$activeConversation?.uniqueName} {cover} />
 				<h2 class="text-2xl font-semibold text-white">{$activeConversation?.uniqueName}</h2>
@@ -81,7 +84,7 @@
 		</section>
 
 		{#if isAdmin}
-			<footer class="w-full left-0 p-4">
+			<footer class="w-full left-0 p-4 mt-3">
 				<Button on:click={handleModal} secondary css="w-full" id="modal-delete"
 					>Eliminar chat</Button
 				>
