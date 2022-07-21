@@ -1,10 +1,13 @@
 <script>
+	import { page } from '$app/stores';
+
 	import { signIn } from '$lib/OAuth';
+
 	import IconGoogle from '$icons/icon-google.svelte';
 
 	async function handleSignIn() {
-		const host = window.location.origin;
-		await signIn('google', `${host}/`);
+		const host = $page.url.origin;
+		await signIn('google', `${host}/#`);
 	}
 </script>
 

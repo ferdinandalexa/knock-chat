@@ -1,10 +1,13 @@
 <script>
+	import { page } from '$app/stores';
+
 	import { signIn } from '$lib/OAuth';
+
 	import IconGithub from '$icons/icon-github.svelte';
 
 	async function handleSignIn() {
-		const host = window.location.origin;
-		await signIn('github', `${host}/`);
+		const host = $page.url.origin;
+		await signIn('github', `${host}/#`);
 	}
 </script>
 
